@@ -261,7 +261,7 @@ window.addEventListener("load", function(){
 
         loadingScreen.classList.add("hide");
 
-    }, 1200);
+    });
 
 });
 
