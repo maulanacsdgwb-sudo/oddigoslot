@@ -1108,7 +1108,7 @@ header.scrolled .logo img{
         #07150b;
 
     color:#fff;
-    transition:opacity .6s ease, visibility .6s ease;
+    transition:opacity .3s ease, visibility .3s ease;
 }
 
 #loadingScreen img{
