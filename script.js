@@ -6,7 +6,7 @@ const loginBtn = document.getElementById("loginBtn");
 
 loginBtn.addEventListener("click", function () {
 
-    window.open("https://oddigopildun.it.com/", "_blank");
+    window.open("https://oddigondx.pro/", "_blank");
 
 });
 
@@ -18,7 +18,7 @@ const registerBtn = document.getElementById("registerBtn");
 
 registerBtn.addEventListener("click", function () {
 
-    window.open("https://oddigopildun.it.com/", "_blank");
+    window.open("https://https://oddigondx.pro/", "_blank");
 
 });
 
