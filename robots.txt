@@ -1,0 +1,5 @@
+User-agent: *
+
+Allow: /
+
+Sitemap: https://maulanacsdgwb-sudo.github.io/oddigoslot/sitemap.xml
