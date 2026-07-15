@@ -217,7 +217,7 @@ if(floatingLivechat){
         if(window.LiveChatWidget){
             LiveChatWidget.call("maximize");
         }else{
-            alert("LiveChat sedang dimuat, silakan coba kembali sebentar lagi.");
+            alert("LiveChat sedang dimuat, silakan coba kembali sebentar lagi.");ya 
         }
 
     });
@@ -257,9 +257,18 @@ window.addEventListener("load", function(){
 
     const loadingScreen = document.getElementById("loadingScreen");
 
-    setTimeout(function(){
+    if(!loadingScreen){
+        return;
+    }
 
+    if(window.innerWidth <= 768){
+        loadingScreen.remove();
+        return;
+    }
+
+    setTimeout(function(){
         loadingScreen.classList.add("hide");
+    }, 250);
 
     });
 
@@ -269,9 +278,7 @@ const promoPopup = document.getElementById("promoPopup");
 const promoClose = document.getElementById("promoClose");
 const promoOverlay = document.getElementById("promoOverlay");
 
-setTimeout(function(){
-    promoPopup.classList.add("show");
-}, 2500);
+
 
 function closePromo(){
     promoPopup.classList.remove("show");
