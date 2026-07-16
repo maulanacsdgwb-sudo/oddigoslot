@@ -1432,3 +1432,28 @@ header.scrolled .logo img{
     }
 }
 
+@media (max-width:768px){
+
+    header{
+        backdrop-filter:none;
+    }
+
+    .card,
+    .stats-card,
+    .provider-card,
+    .testimoni-box{
+        box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+
+    .reveal{
+        transform:translateY(12px);
+        transition:opacity .35s ease, transform .35s ease;
+    }
+
+    .hero-image img:hover,
+    .card:hover,
+    .stats-card:hover,
+    .provider-card:hover{
+        transform:none;
+    }
+}
