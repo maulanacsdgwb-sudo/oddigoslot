@@ -266,9 +266,6 @@ window.addEventListener("load", function(){
         return;
     }
 
-    setTimeout(function(){
-        loadingScreen.classList.add("hide");
-    }, 250);
 
     });
 
