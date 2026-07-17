@@ -1457,3 +1457,13 @@ header.scrolled .logo img{
         transform:none;
     }
 }
+
+@media (max-width:768px){
+    #judul{
+        font-size:38px;
+    }
+}
+#judul{
+    font-size:70px;
+    text-transform:uppercase;
+}
