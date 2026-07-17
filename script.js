@@ -217,7 +217,7 @@ if(floatingLivechat){
         if(window.LiveChatWidget){
             LiveChatWidget.call("maximize");
         }else{
-            alert("LiveChat sedang dimuat, silakan coba kembali sebentar lagi.");ya 
+            alert("LiveChat sedang dimuat, silakan coba kembali sebentar lagi.");
         }
 
     });
@@ -266,8 +266,6 @@ window.addEventListener("load", function(){
         return;
     }
 
-
-    });
 
 });
 
