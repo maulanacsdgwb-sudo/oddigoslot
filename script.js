@@ -60,8 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const judul = document.getElementById("judul");
 
     if (judul) {
-        judul.style.fontSize = "70px";
-        judul.style.textTransform = "uppercase";
 
         judul.addEventListener("mouseover", function () {
             judul.style.color = "red";
@@ -299,11 +297,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
             closePromo();
-        }
+    }
     });
 
-    // Popup muncul setelah 5 detik
-    setTimeout(openPromo, 5000);
 
 
     // ==============================
@@ -349,28 +345,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// ==============================
-// Loading Screen
-// ==============================
-
 window.addEventListener("load", function () {
-    const loadingScreen =
-        document.getElementById("loadingScreen");
+    const loadingScreen = document.getElementById("loadingScreen");
 
-    if (!loadingScreen) {
-        return;
-    }
-
-    // Di HP langsung dihapus agar lebih ringan
-    if (window.innerWidth <= 768) {
+    if (loadingScreen) {
         loadingScreen.remove();
-        return;
     }
-
-    // Di desktop menghilang setelah halaman selesai dimuat
-    loadingScreen.classList.add("hide");
-
-    setTimeout(function () {
-        loadingScreen.remove();
-    }, 400);
 });
