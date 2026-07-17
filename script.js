@@ -1,316 +1,376 @@
-// ==============================
-// Tombol Login
-// ==============================
+document.addEventListener("DOMContentLoaded", function () {
 
-const loginBtn = document.getElementById("loginBtn");
+    // ==============================
+    // Tombol Login
+    // ==============================
 
-loginBtn.addEventListener("click", function () {
+    const loginBtn = document.getElementById("loginBtn");
 
-    window.open("https://oddigondx.pro/", "_blank");
-
-});
-
-// ==============================
-// Tombol Daftar
-// ==============================
-
-const registerBtn = document.getElementById("registerBtn");
-
-registerBtn.addEventListener("click", function () {
-
-    window.open("https://https://oddigondx.pro/", "_blank");
-
-});
-
-
-// ==============================
-// Tombol LiveChat
-// ==============================
-
-const livechatBtn = document.getElementById("livechat-btn");
-
-livechatBtn.addEventListener("click", function (e) {
-
-    e.preventDefault();
-
-    if (window.LiveChatWidget) {
-
-        LiveChatWidget.call("maximize");
-
-    } else {
-
-        alert("LiveChat sedang dimuat...");
-
+    if (loginBtn) {
+        loginBtn.addEventListener("click", function () {
+            window.open("https://oddigondx.pro/", "_blank");
+        });
     }
 
-});
 
-judul.style.fontSize="70px";   
+    // ==============================
+    // Tombol Daftar
+    // ==============================
 
-judul.style.textTransform="uppercase";
+    const registerBtn = document.getElementById("registerBtn");
 
-judul.addEventListener("mouseover",function(){
+    if (registerBtn) {
+        registerBtn.addEventListener("click", function () {
+            window.open("https://oddigondx.pro/", "_blank");
+        });
+    }
 
-judul.style.color="red";
 
-});
-judul.addEventListener("mouseout",function(){
+    // ==============================
+    // LiveChat Header
+    // ==============================
 
-judul.style.color="#16b316";
+    const livechatBtn = document.getElementById("livechat-btn");
 
-});
-function animateCounter(id, target, speed){
+    if (livechatBtn) {
+        livechatBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            openLiveChat();
+        });
+    }
 
-let counter = 0;
 
-const element = document.getElementById(id);
+    // ==============================
+    // Fungsi LiveChat
+    // ==============================
 
-const increment = Math.ceil(target / speed);
+    function openLiveChat() {
+        if (window.LiveChatWidget) {
+            window.LiveChatWidget.call("maximize");
+        } else {
+            alert("LiveChat sedang dimuat, silakan coba kembali sebentar lagi.");
+        }
+    }
 
-const timer = setInterval(function(){
 
-counter += increment;
+    // ==============================
+    // Judul Hero
+    // ==============================
 
-if(counter >= target){
+    const judul = document.getElementById("judul");
 
-counter = target;
+    if (judul) {
+        judul.style.fontSize = "70px";
+        judul.style.textTransform = "uppercase";
 
-clearInterval(timer);
+        judul.addEventListener("mouseover", function () {
+            judul.style.color = "red";
+        });
 
-}
+        judul.addEventListener("mouseout", function () {
+            judul.style.color = "#16b316";
+        });
+    }
 
-element.innerHTML = counter.toLocaleString();
 
-},20);
+    // ==============================
+    // Animated Counter
+    // ==============================
 
-}
-animateCounter("memberCounter",255000,50);
+    function animateCounter(id, target, speed) {
+        const element = document.getElementById(id);
 
-animateCounter("wdCounter",7568923000,800);
+        if (!element) {
+            return;
+        }
 
-window.addEventListener("scroll", function () {
+        let counter = 0;
+        const increment = Math.ceil(target / speed);
+
+        const timer = setInterval(function () {
+            counter += increment;
+
+            if (counter >= target) {
+                counter = target;
+                clearInterval(timer);
+            }
+
+            element.textContent = counter.toLocaleString("id-ID");
+        }, 20);
+    }
+
+    animateCounter("memberCounter", 255000, 50);
+    animateCounter("wdCounter", 7568923000, 800);
+
+
+    // ==============================
+    // Sticky Header
+    // ==============================
+
     const header = document.querySelector("header");
 
-    if (window.scrollY > 50) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
-});
+    function updateHeader() {
+        if (!header) {
+            return;
+        }
 
-window.addEventListener("scroll", function(){
+        header.classList.toggle("scrolled", window.scrollY > 50);
+    }
+
+
+    // ==============================
+    // Scroll Reveal
+    // ==============================
+
     const reveals = document.querySelectorAll(".reveal");
 
-    reveals.forEach(function(item){
-        const windowHeight = window.innerHeight;
-        const itemTop = item.getBoundingClientRect().top;
-        const revealPoint = 120;
-
-        if(itemTop < windowHeight - revealPoint){
-            item.classList.add("active");
-        }
-    });
-});
-
-const dataTestimoni = [
-    {
-        text: "WD Rp12.500.000 masuk kurang dari 2 menit. Mantap!",
-        name: "Andi - Jakarta"
-    },
-    {
-        text: "Deposit cepat, CS ramah, dan prosesnya mudah.",
-        name: "Rian - Medan"
-    },
-    {
-        text: "Tampilan situs nyaman dan pelayanan 24 jam.",
-        name: "Dewi - Surabaya"
-    }
-];
-
-let testiIndex = 0;
-
-setInterval(function(){
-    testiIndex++;
-
-    if(testiIndex >= dataTestimoni.length){
-        testiIndex = 0;
-    }
-
-    document.getElementById("testiText").innerHTML = dataTestimoni[testiIndex].text;
-    document.getElementById("testiName").innerHTML = dataTestimoni[testiIndex].name;
-
-}, 3000);
-
-// =========================
-// Scroll Animation
-// =========================
-
-const reveals = document.querySelectorAll(".reveal");
-
-window.addEventListener("scroll", revealSection);
-
-function revealSection(){
-
-    reveals.forEach(function(section){
-
-        const top = section.getBoundingClientRect().top;
-
+    function revealSection() {
         const windowHeight = window.innerHeight;
 
-        if(top < windowHeight - 120){
+        reveals.forEach(function (section) {
+            const sectionTop = section.getBoundingClientRect().top;
 
-            section.classList.add("active");
+            if (sectionTop < windowHeight - 120) {
+                section.classList.add("active");
+            }
+        });
+    }
 
+
+    // Gabungkan pekerjaan scroll agar lebih ringan
+    window.addEventListener(
+        "scroll",
+        function () {
+            updateHeader();
+            revealSection();
+            updateBackToTop();
+        },
+        { passive: true }
+    );
+
+    updateHeader();
+    revealSection();
+
+
+    // ==============================
+    // Testimoni Slider
+    // ==============================
+
+    const testiText = document.getElementById("testiText");
+    const testiName = document.getElementById("testiName");
+
+    const dataTestimoni = [
+        {
+            text: "WD Rp12.500.000 masuk kurang dari 2 menit. Mantap!",
+            name: "Andi - Jakarta"
+        },
+        {
+            text: "Deposit cepat, CS ramah, dan prosesnya mudah.",
+            name: "Rian - Medan"
+        },
+        {
+            text: "Tampilan situs nyaman dan pelayanan 24 jam.",
+            name: "Dewi - Surabaya"
         }
+    ];
 
-    });
+    let testiIndex = 0;
 
-}
+    if (testiText && testiName) {
+        setInterval(function () {
+            testiIndex = (testiIndex + 1) % dataTestimoni.length;
 
-revealSection();
+            testiText.textContent = dataTestimoni[testiIndex].text;
+            testiName.textContent = dataTestimoni[testiIndex].name;
+        }, 3000);
+    }
 
-const faq = document.querySelectorAll(".faq-item");
 
-faq.forEach(function(item){
+    // ==============================
+    // FAQ Accordion
+    // ==============================
 
-    const button = item.querySelector(".faq-question");
+    const faqItems = document.querySelectorAll(".faq-item");
 
-    button.addEventListener("click", function(){
-
-        item.classList.toggle("open");
-
+    faqItems.forEach(function (item) {
+        const button = item.querySelector(".faq-question");
         const answer = item.querySelector(".faq-answer");
 
-        if(item.classList.contains("open")){
-
-            answer.style.maxHeight = answer.scrollHeight + "px";
-
-        }else{
-
-            answer.style.maxHeight = null;
-
+        if (!button || !answer) {
+            return;
         }
 
+        button.addEventListener("click", function () {
+            item.classList.toggle("open");
+
+            if (item.classList.contains("open")) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = null;
+            }
+        });
     });
 
-});
 
-const footerLivechat = document.getElementById("footerLivechat");
+    // ==============================
+    // LiveChat Footer
+    // ==============================
 
-if(footerLivechat){
-    footerLivechat.addEventListener("click", function(e){
-        e.preventDefault();
+    const footerLivechat = document.getElementById("footerLivechat");
 
-        if(window.LiveChatWidget){
-            LiveChatWidget.call("maximize");
-        }else{
-            alert("LiveChat sedang dimuat, silakan coba kembali sebentar lagi.");
+    if (footerLivechat) {
+        footerLivechat.addEventListener("click", function (event) {
+            event.preventDefault();
+            openLiveChat();
+        });
+    }
+
+
+    // ==============================
+    // Floating LiveChat
+    // ==============================
+
+    const floatingLivechat =
+        document.getElementById("floatingLivechat");
+
+    if (floatingLivechat) {
+        floatingLivechat.addEventListener("click", openLiveChat);
+    }
+
+
+    // ==============================
+    // Back To Top
+    // ==============================
+
+    const backToTop = document.getElementById("backToTop");
+
+    function updateBackToTop() {
+        if (!backToTop) {
+            return;
+        }
+
+        const isVisible = window.scrollY > 400;
+
+        backToTop.style.opacity = isVisible ? "1" : "0";
+        backToTop.style.visibility =
+            isVisible ? "visible" : "hidden";
+    }
+
+    if (backToTop) {
+        backToTop.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
+
+    updateBackToTop();
+
+
+    // ==============================
+    // Popup Promo
+    // ==============================
+
+    const promoPopup = document.getElementById("promoPopup");
+    const promoClose = document.getElementById("promoClose");
+    const promoOverlay = document.getElementById("promoOverlay");
+
+    function openPromo() {
+        if (promoPopup) {
+            promoPopup.classList.add("show");
+        }
+    }
+
+    function closePromo() {
+        if (promoPopup) {
+            promoPopup.classList.remove("show");
+        }
+    }
+
+    if (promoClose) {
+        promoClose.addEventListener("click", closePromo);
+    }
+
+    if (promoOverlay) {
+        promoOverlay.addEventListener("click", closePromo);
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closePromo();
         }
     });
-}
 
-const floatingLivechat = document.getElementById("floatingLivechat");
+    // Popup muncul setelah 5 detik
+    setTimeout(openPromo, 5000);
 
-if(floatingLivechat){
-    floatingLivechat.addEventListener("click", function(){
 
-        if(window.LiveChatWidget){
-            LiveChatWidget.call("maximize");
-        }else{
-            alert("LiveChat sedang dimuat, silakan coba kembali sebentar lagi.");
+    // ==============================
+    // Statistik Live
+    // ==============================
+
+    const onlineUsers = document.getElementById("onlineUsers");
+    const transactionsToday =
+        document.getElementById("transactionsToday");
+
+    let onlineValue = 1250;
+    let transactionValue = 3480;
+
+    function updateLiveStats() {
+        if (!onlineUsers || !transactionsToday) {
+            return;
         }
 
-    });
-}
+        const onlineChange =
+            Math.floor(Math.random() * 11) - 5;
 
-const backToTop = document.getElementById("backToTop");
-window.addEventListener("scroll", function(){
+        const transactionChange =
+            Math.floor(Math.random() * 4);
 
-    if(window.scrollY > 400){
+        onlineValue += onlineChange;
+        transactionValue += transactionChange;
 
-        backToTop.style.opacity = "1";
+        if (onlineValue < 1200) {
+            onlineValue = 1200;
+        }
 
-        backToTop.style.visibility = "visible";
+        onlineUsers.textContent =
+            onlineValue.toLocaleString("id-ID");
 
-    }else{
+        transactionsToday.textContent =
+            transactionValue.toLocaleString("id-ID");
+    }
 
-        backToTop.style.opacity = "0";
-
-        backToTop.style.visibility = "hidden";
-
+    if (onlineUsers && transactionsToday) {
+        setInterval(updateLiveStats, 3000);
     }
 
 });
-backToTop.addEventListener("click", function(){
 
-    window.scrollTo({
 
-        top:0,
+// ==============================
+// Loading Screen
+// ==============================
 
-        behavior:"smooth"
+window.addEventListener("load", function () {
+    const loadingScreen =
+        document.getElementById("loadingScreen");
 
-    });
-
-});
-
-window.addEventListener("load", function(){
-
-    const loadingScreen = document.getElementById("loadingScreen");
-
-    if(!loadingScreen){
+    if (!loadingScreen) {
         return;
     }
 
-    if(window.innerWidth <= 768){
+    // Di HP langsung dihapus agar lebih ringan
+    if (window.innerWidth <= 768) {
         loadingScreen.remove();
         return;
     }
 
+    // Di desktop menghilang setelah halaman selesai dimuat
+    loadingScreen.classList.add("hide");
 
+    setTimeout(function () {
+        loadingScreen.remove();
+    }, 400);
 });
-
-const promoPopup = document.getElementById("promoPopup");
-const promoClose = document.getElementById("promoClose");
-const promoOverlay = document.getElementById("promoOverlay");
-
-
-
-function closePromo(){
-    promoPopup.classList.remove("show");
-}
-
-promoClose.addEventListener("click", closePromo);
-promoOverlay.addEventListener("click", closePromo);
-
-document.addEventListener("keydown", function(event){
-
-    if(event.key === "Escape"){
-        closePromo();
-    }
-
-});
-
-const onlineUsers = document.getElementById("onlineUsers");
-const transactionsToday = document.getElementById("transactionsToday");
-
-let onlineValue = 1250;
-let transactionValue = 3480;
-
-function updateLiveStats(){
-
-    const onlineChange = Math.floor(Math.random() * 11) - 5;
-    const transactionChange = Math.floor(Math.random() * 4);
-
-    onlineValue += onlineChange;
-    transactionValue += transactionChange;
-
-    if(onlineValue < 1200){
-        onlineValue = 1200;
-    }
-
-    onlineUsers.textContent = onlineValue.toLocaleString("id-ID");
-    transactionsToday.textContent =
-        transactionValue.toLocaleString("id-ID");
-}
-
-setInterval(updateLiveStats, 3000);
